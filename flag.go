@@ -156,7 +156,7 @@ func (i *InFileValue) Set(arg string) (err error) {
 }
 
 func (i *InFileValue) String() string {
-	return "input file"
+	return fmt.Sprintf("%#+v", i)
 }
 
 func (i *InFileValue) Read(b []byte) (int, error) {
@@ -196,7 +196,7 @@ func InFileVar(p *InFileValue, name, usage string) {
 // InFileVar defines a slice of io.ReadCloser flag with specified name and usage string.
 // The argument p is a pointer to a slice in which to store the value of the flag.
 func (f *FlagSet) InFileVar(p *InFileValue, name, usage string) {
-	f.Var(&InFileValue{p}, name, usage)
+	f.Var(p, name, usage)
 }
 
 type inFilesValue struct {
